@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Alışkanlık Takibi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Alışkanlık Takip Uygulaması</h1>
+
+    <form method="POST">
+        {% for habit in habits %}
+            <label>
+                <input type="checkbox" name="habits" value="{{ habit }}"
+                {% if habit in selected %}checked{% endif %}>
+                {{ habit }}
+            </label><br>
+        {% endfor %}
+
+        <button type="submit">Puanı Hesapla</button>
+    </form>
+
+    {% if message %}
+        <div class="result">
+            <h2>Toplam Puan: {{ score }}</h2>
+            <p>{{ message }}</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
